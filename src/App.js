@@ -1,33 +1,39 @@
 import './App.css';
-import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
-import Feed from './components/Feed';
-import Rightbar from './components/Rightbar';
-import {Box, createTheme, Stack, ThemeProvider} from '@mui/material';
-import Add from './components/Add';
-import { useState } from 'react';
-
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import './Index.css';
+import protectedRoutes from './Route/ProtectedRoutes';
+import publicRoutes from './Route/PublicRoutes';
+import Main from './Layout/Main';
 
 function App() {
-  const [mode,setMode]=useState('light');
-  const darkTheme=createTheme({
-    palette:{
-      mode:mode
-    }
-  })  
+ 
   return (
     <>
-    <ThemeProvider theme={darkTheme}>
-      <Box bgcolor={"background.default"} color={"text.primary"}>      
-      <Navbar/>
-      <Stack direction="row" spacing={2} justifyContent="space-between"> 
-        <Sidebar setMode={setMode} mode={mode}/>
-        <Feed/>
-        <Rightbar/>
-      </Stack>
-      <Add/>
-    </Box>
-    </ThemeProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Main />}>
+            {protectedRoutes.map((route, index) => {
+              return (
+                <Route
+                  path={route.path}
+                  element={route.element}
+                  key={index}
+                />
+              )
+            })}
+          </Route>
+          {publicRoutes.map((route, index) => {
+            return (
+              <Route
+                path={route.path}
+                element={route.element}
+                key={index}
+              />
+            )
+          })}
+          <Route path="*" element={<h1>Not found</h1>} />
+        </Routes>
+      </Router>
     </>
   );
 }
