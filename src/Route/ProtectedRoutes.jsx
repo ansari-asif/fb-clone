@@ -3,7 +3,7 @@ import Feed from "../components/Feed";
 
 const protectedRoutes = [
     { path: "/", element: <Feed/> },
-    // { path: "/friend", element: <Friends /> },
+    { path: "/friends", element: <Friends /> },
 ]
 
 

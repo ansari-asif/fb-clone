@@ -2,15 +2,14 @@ import { Home,TextSnippet,Group,Storefront,Person,AccountCircle,Settings,ModeNig
 } from '@mui/icons-material'
 import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Switch } from '@mui/material'
 import React from 'react'
-
+import {Link} from "react-router-dom";
 function Sidebar({mode,setMode}) {
   return (
     <Box  flex={1} p={2} sx={{display:{xs:"none",sm:"block"}}}>
       <Box position="fixed"> 
-
          <List>
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#home">
+              <ListItemButton component={Link} to="/">
                 <ListItemIcon>
                   <Home/>
                 </ListItemIcon>
@@ -43,7 +42,7 @@ function Sidebar({mode,setMode}) {
             </ListItem>
            
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#home">
+              <ListItemButton component={Link} to="/friends">
                 <ListItemIcon>
                   <Person/>
                 </ListItemIcon>
