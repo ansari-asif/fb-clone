@@ -58,7 +58,7 @@ function Sidebar({mode,setMode}) {
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#home">
+              <ListItemButton component={Link} to="/profile">
                 <ListItemIcon>
                   <AccountCircle/>
                 </ListItemIcon>
